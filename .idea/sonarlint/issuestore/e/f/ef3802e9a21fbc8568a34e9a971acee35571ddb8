@@ -1,0 +1,11 @@
+
+O
+java:S2699S"-Add at least one assertion to this test case.(âÓ¶¨ùÿÿÿÿ8ÅîéÖ2
+œ
+java:S6204"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ş­»°üÿÿÿÿ8ËîéÖ2
+—
+java:S6204"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(İµ€8ËîéÖ2
+—
+java:S6204K"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(ÿø‡´8ĞîéÖ2
+—
+java:S6204L"zReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()' and ensure that the list is unmodified.(½®ƒ8ĞîéÖ2

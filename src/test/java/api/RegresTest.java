@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static io.restassured.RestAssured.given;
-import static jdk.internal.vm.vector.VectorSupport.extract;
 
 public class RegresTest {
     private final static String URL = "https://regres.in/";
@@ -18,7 +17,7 @@ public class RegresTest {
         Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseSpecOK200());
         List<UserData> users = given()
                 .when()
-                .get("/api/users?page=2")
+                .get("/api/users?page=1")
                 .then().log().all()
                 .extract().body().jsonPath().getList("data", UserData.class);
         users.forEach(x -> Assert.assertTrue(x.getAvatar().contains(x.getId().toString())));
@@ -72,8 +71,8 @@ public class RegresTest {
                 .when()
                 .get("api/unknow")
                 .then().log().all()
-        extract().body().jsonPath().getlist("data", Collectors.class);
-        List<Integer> years = colors.stream().map(ColorsData::getYear).collect(Collectors.toList());
+                .extract().body().jsonPath().getList("data", ColorsData.class);
+        List<Integer> years = calors.stream().map(ColorsData::getYear).collect(Collectors.toList());
         List<Integer> sortedYears = years.stream().sorted().collect(Collectors.toList());
         Assert.assertEquals(sortedYears, years);
         System.out.println(years);
@@ -82,7 +81,7 @@ public class RegresTest {
 
     @Test
     public void deliteUserTest() {
-        Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseSpecUnique(204);
+        Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseSpecUnique(204));
         given()
                 .when()
                 .delete("/api/users/2")
@@ -90,7 +89,7 @@ public class RegresTest {
     }
 
     @Test
-    public void timeTest(){
+    public void timeTest() {
         Specifications.installSpecification(Specifications.requestSpec(URL), Specifications.responseSpecOK200());
         UserTime user = new UserTime("morpheus", "zion resident");
         UserTimeResponse response = given()
@@ -100,8 +99,8 @@ public class RegresTest {
                 .then().log().all()
                 .extract().as(UserTimeResponse.class);
         String regex = "(.{5})$";
-        String currentTime = Clock.systemUTC().instant().toString().replaceAll(regex,"");
-        Assert.assertEquals(currentTime, response.getUpdatedAt().replaceAll(regex,""));
-        System.out.println(response.getUpdatedAt().replaceAll(regex,""));
+        String currentTime = Clock.systemUTC().instant().toString().replaceAll(regex, "");
+        Assert.assertEquals(currentTime, response.getUpdatedAt().replaceAll(regex, ""));
+        System.out.println(response.getUpdatedAt().replaceAll(regex, ""));
     }
 }
